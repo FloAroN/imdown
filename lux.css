@@ -1,0 +1,229 @@
+/* Editorial Monochrome Luxury (v5 — Paper & Noir). Zero AI-Slop, zero Neon/Blue/Pink-Glow.
+   ivory = "Paper" (Standard): Warmes Galerie-Weiß, tiefes Tintenschwarz, feine Buchdruck-Linien.
+   gala  = "Noir"  (Dunkel):   Tiefes warmes Obsidian-Schwarz, Elfenbein, mattes Sand-Champagner. */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
+:root[data-look] {
+  --serif: "Instrument Serif", "Didot", "Bodoni 72", Georgia, serif;
+  --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+:root[data-look="ivory"] {
+  --bg: #F6F4EF;
+  --bgimg: none;
+  --ink: #111111;
+  --muted: #6E6A63;
+  --line: rgba(17, 17, 17, .10);
+  --line-strong: rgba(17, 17, 17, .22);
+  --surface: #FFFFFF;
+  --sheet: #FFFFFF;
+  --sheet-shadow: 0 18px 48px rgba(17, 17, 17, .055), 0 1px 2px rgba(17, 17, 17, .04), inset 0 0 0 6px #FFFFFF, inset 0 0 0 7px rgba(17, 17, 17, .065);
+  --accent: #8F7D63;
+  --on: #F5F2EB;
+  --on-border: #111111;
+  --cta: #111111;
+  --ctafg: #FAF8F5;
+  --tickbg: #111111;
+  --tickfg: #FAF8F5;
+  --glow: 0 12px 28px rgba(17, 17, 17, .16);
+  --seal-bg: #FFFFFF;
+  --seal-fg: #111111;
+  --seal-ring: rgba(17, 17, 17, .14);
+  --seal-shadow: 0 6px 20px rgba(17, 17, 17, .06);
+  --card: #FFFFFF;
+  --cardink: #111111;
+  --frame-accent: rgba(17, 17, 17, .10);
+}
+
+:root[data-look="gala"] {
+  --bg: #0C0C0B;
+  --bgimg: radial-gradient(75% 36% at 50% -8%, rgba(255, 248, 236, .055), transparent 72%);
+  --ink: #F4F1EA;
+  --muted: rgba(244, 241, 234, .54);
+  --line: rgba(244, 241, 234, .11);
+  --line-strong: rgba(203, 185, 155, .36);
+  --surface: #161614;
+  --sheet: #131312;
+  --sheet-shadow: 0 28px 64px rgba(0, 0, 0, .55), inset 0 0 0 6px #131312, inset 0 0 0 7px rgba(244, 241, 234, .055);
+  --accent: #CBB99B;
+  --on: rgba(244, 241, 234, .065);
+  --on-border: #E8DFCF;
+  --cta: #F4F1EA;
+  --ctafg: #0C0C0B;
+  --tickbg: #F4F1EA;
+  --tickfg: #0C0C0B;
+  --glow: 0 12px 30px rgba(0, 0, 0, .42);
+  --seal-bg: #141413;
+  --seal-fg: #F4F1EA;
+  --seal-ring: rgba(203, 185, 155, .35);
+  --seal-shadow: 0 8px 24px rgba(0, 0, 0, .45);
+  --card: #141413;
+  --cardink: #F4F1EA;
+  --frame-accent: rgba(203, 185, 155, .24);
+}
+
+:root[data-look] { background: var(--bg); color-scheme: light; }
+:root[data-look="gala"] { color-scheme: dark; }
+[data-look] body { background: var(--bgimg), var(--bg); background-attachment: fixed; color: var(--ink); font-family: var(--sans); }
+[data-look] .wrap { max-width: 440px; min-height: 100dvh; display: flex; flex-direction: column; padding: 18px 20px 30px; }
+[data-look] .emo { display: none; }
+
+/* Kopf: puristische Wortmarke + diskrete Schalter */
+[data-look] .top { margin-bottom: 26px; }
+[data-look] .logo { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: 25px; letter-spacing: .01em; color: var(--ink); gap: 9px; }
+[data-look] .logo svg { display: none; }
+[data-look] .logo::before {
+  content: ""; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--line-strong);
+}
+[data-look] .logo i { color: var(--accent); font-style: normal; }
+[data-look] .controls { display: flex; align-items: center; gap: 8px; }
+[data-look] .theme-btn {
+  width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink); font-size: 13px; line-height: 1;
+  display: grid; place-items: center; cursor: pointer; transition: border-color .18s, transform .12s;
+}
+[data-look] .theme-btn:active { transform: scale(.93); }
+[data-look] .lang { background: var(--surface); border: 1px solid var(--line); backdrop-filter: none; padding: 2px; }
+[data-look] .lang button { color: var(--muted); font-weight: 600; font-size: 10.5px; letter-spacing: .12em; padding: 5px 9px; }
+[data-look] .lang button.on { background: var(--cta); color: var(--ctafg); }
+
+/* Einladungs-Kopf mit minimalistischem Buchdruck-Monogramm */
+[data-look] .inv-head { text-align: center; margin-bottom: 22px; }
+[data-look] .inv-seal {
+  display: grid; place-items: center;
+  width: 46px; height: 46px; border-radius: 50%; margin: 0 auto 16px;
+  background: var(--seal-bg); color: var(--seal-fg);
+  border: 1px solid var(--seal-ring);
+  font: italic 400 24px/1 var(--serif);
+  box-shadow: var(--seal-shadow), inset 0 0 0 3px var(--bg), inset 0 0 0 4px var(--seal-ring);
+}
+[data-look] .eyebrow {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: none; box-shadow: none; transform: none; padding: 0; margin-bottom: 10px;
+  font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--accent);
+}
+[data-look] .eyebrow::before, [data-look] .eyebrow::after { content: ""; width: 18px; height: 1px; background: currentColor; opacity: .5; }
+[data-look] h1 { font-family: var(--serif); font-weight: 400; font-size: 46px; line-height: 0.98; letter-spacing: -0.012em; margin-bottom: 10px; }
+[data-look] h1 em { font-style: italic; color: var(--ink); }
+[data-look="gala"] h1 em { color: var(--accent); }
+[data-look] .quote { font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.3; color: var(--ink); opacity: .82; margin: 6px 0 8px; }
+[data-look] .sub { color: var(--muted); font-weight: 400; font-size: 14.5px; line-height: 1.5; margin-bottom: 24px; }
+[data-look] .inv-head .sub { margin-bottom: 0; }
+
+/* Gedruckter Einladungsbogen */
+[data-look] .inv-sheet {
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 24px 18px 20px;
+  box-shadow: var(--sheet-shadow);
+}
+[data-look] .inv-sheet .sec { margin-bottom: 22px; }
+[data-look] .inv-sheet .sec-times { margin-bottom: 20px; }
+[data-look] .label {
+  font-family: var(--sans); font-size: 9.5px; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 11px; padding-left: 2px;
+}
+[data-look] .label span { font-size: 10px; letter-spacing: .1em; }
+[data-look] .help, [data-look] .note, [data-look] .field small { color: var(--muted); }
+[data-look] .field small { font-size: 11px; font-weight: 600; letter-spacing: .04em; margin-bottom: 7px; }
+
+/* Ideen-Zeilen: ruhige Buchdruck-Zeilen mit römischen Ziffern */
+[data-look] .sec-ideas { counter-reset: n; }
+[data-look] .opt {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 14px;
+  padding: 13px 14px; margin-bottom: 8px; gap: 13px;
+  box-shadow: none; font-size: 15px;
+  transition: border-color .16s, background .16s, transform .12s;
+}
+[data-look] .sec-ideas .opt:last-child { margin-bottom: 0; }
+[data-look] .opt .tx { font-weight: 500; letter-spacing: -.005em; }
+[data-look] .opt .em {
+  counter-increment: n; font-size: 0; width: 28px; height: 28px; flex: 0 0 28px;
+  border-radius: 50%; background: none; border: 1px solid var(--line);
+}
+[data-look] .opt .em::before { content: counter(n, upper-roman); font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--accent); }
+[data-look] .opt .tick { width: 20px; height: 20px; flex: 0 0 20px; border: 1px solid var(--line-strong); font-size: 11px; }
+[data-look] .opt.on { border-color: var(--on-border); background: var(--on); transform: none; box-shadow: inset 0 0 0 .5px var(--on-border); }
+[data-look] .opt.on .em { border-color: var(--on-border); }
+[data-look] .opt.on .em::before { color: var(--ink); }
+[data-look] .opt.on .tick { background: var(--tickbg); border-color: transparent; color: var(--tickfg); }
+
+/* Zeiten als ruhige horizontale Kacheln */
+[data-look] .times-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 8px; }
+[data-look] .opt.time {
+  flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  padding: 13px 8px; margin-bottom: 0; gap: 0; position: relative;
+}
+[data-look] .opt.time .em,
+[data-look] .opt.time .tick,
+[data-look] .opt.time .t-full { display: none; }
+[data-look] .opt.time .t-compact { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+[data-look] .opt.time .t-compact b { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+[data-look] .opt.time .t-compact i { font-style: normal; font-family: var(--serif); font-size: 24px; line-height: 1; color: var(--ink); }
+[data-look] .opt.time .t-compact small { font-size: 10px; color: var(--muted); }
+[data-look] .opt.time.on .t-compact b { color: var(--ink); }
+[data-look] .opt.time.on::after {
+  content: "✓"; position: absolute; top: -6px; right: -6px;
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--tickbg); color: var(--tickfg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
+  display: grid; place-items: center; font-size: 9.5px; font-weight: 800;
+}
+
+/* Mini-Vorschau im Fertig-Screen */
+[data-look] .mini-card {
+  background: var(--sheet); border: 1px solid var(--line); border-radius: 18px;
+  padding: 18px 16px; margin-bottom: 18px; text-align: center;
+  box-shadow: var(--sheet-shadow);
+}
+[data-look] .mini-card .mc-eb { font-size: 9px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+[data-look] .mini-card .mc-h { font-family: var(--serif); font-size: 26px; line-height: 1.05; margin-bottom: 8px; }
+[data-look] .mini-card .mc-meta { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+/* Buttons */
+[data-look] .inv-sheet .sticky { position: static; padding: 2px 0 0; }
+[data-look] .btn { font-family: var(--sans); font-weight: 600; letter-spacing: .01em; border-radius: 999px; }
+[data-look] .btn.primary {
+  background: var(--cta); color: var(--ctafg); box-shadow: var(--glow);
+  font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 25px;
+  letter-spacing: .01em; padding: 14px 18px;
+}
+[data-look] .btn.primary:disabled { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line); opacity: .65; }
+[data-look] .btn.ghost { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); font-size: 14px; font-weight: 550; padding: 13px 14px; }
+[data-look] .textlink { color: var(--muted); font-weight: 500; font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; margin-top: 20px; align-self: center; }
+[data-look] .textlink.quiet { font-size: 12px; opacity: .72; margin-top: 12px; border-bottom-color: transparent; }
+[data-look] .note { font-size: 11.5px; opacity: .72; margin-top: 14px; letter-spacing: .01em; }
+[data-look] .foot { margin-top: auto; padding-top: 24px; }
+[data-look] .foot a { color: var(--muted); font-size: 12px; opacity: .7; }
+[data-look] .foot a b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 15px; color: var(--ink); }
+
+/* Erstellen-Ansicht */
+[data-look] input.text { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); border-radius: 13px; font-weight: 500; font-size: 15px; }
+[data-look] input.text::placeholder { color: var(--muted); opacity: .55; }
+[data-look] input.text:focus { box-shadow: inset 0 0 0 1.5px var(--on-border); }
+[data-look] .chip { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); font-weight: 500; font-size: 13.5px; padding: 9px 14px; }
+[data-look] .chip.on, [data-look] .chip.x { background: var(--cta); color: var(--ctafg); transform: none; box-shadow: none; }
+[data-look] .look-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+[data-look] .look-pick .chip { text-align: center; padding: 11px 14px; }
+[data-look] .panel, [data-look] .linkbox { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); border-radius: 14px; }
+[data-look] .err { color: var(--ink); }
+
+/* "Date steht"-Karte: puristische gedruckte Karte ohne Riesen-Emoji */
+[data-look] .datecard {
+  background: var(--card); color: var(--cardink); transform: none; border-radius: 20px;
+  border: 1px solid var(--line); padding: 34px 24px 30px;
+  box-shadow: var(--sheet-shadow);
+}
+[data-look] .datecard .big { display: none; }
+[data-look] .datecard::before {
+  content: "I'M DOWN"; display: block; font-family: var(--sans); font-size: 9.5px;
+  font-weight: 600; letter-spacing: .26em; color: var(--accent); margin-bottom: 14px;
+}
+[data-look] .datecard h2 { font-family: var(--serif); font-weight: 400; font-size: 36px; line-height: 1.05; margin-bottom: 10px; }
+[data-look] .datecard p { color: var(--muted); font-weight: 500; font-size: 14.5px; }
+[data-look] .datecard .with { background: none; color: var(--ink); border: 1px solid var(--line); font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; margin-top: 16px; padding: 6px 14px; }
+[data-look] .toast { background: var(--cta); color: var(--ctafg); }
